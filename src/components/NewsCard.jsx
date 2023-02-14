@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleArrowRight, faComment } from '@fortawesome/free-solid-svg-icons'
 
 
-function NewsCard({ singleNews }) {
+function NewsCard({ singleNews, type }) {
     return (
         <div className='news-card'>
             <label className='news-card-title'>{singleNews.title}</label>
@@ -15,9 +15,9 @@ function NewsCard({ singleNews }) {
                         <FontAwesomeIcon icon={faComment} />
                         <div>{singleNews.news_comments_aggregate.aggregate.count}</div>
                     </section>) : (<></>)}
-                <Link to={`${singleNews.id}`} className='news-card-link'>
+                {!type && <Link to={`${singleNews.id}`} className='news-card-link'>
                     <FontAwesomeIcon className='news-card-icon' icon={faCircleArrowRight} /><span>Details</span>
-                </Link>
+                </Link>}
             </div>
         </div>
     )

@@ -16,6 +16,9 @@ import News from './pages/News'
 import NotFound from './pages/NotFound'
 import LoginAdmin from './pages/LoginAdmin'
 import ForgotPass from './pages/ForgotPass'
+import AdminForgotPass from './pages/AdminForgotPass'
+import ResetPass from './pages/ResetPass'
+import ResetPassAdmin from './pages/ResetPassAdmin'
 import Profile from './pages/Profile'
 import SingleNews from './pages/SingleNews'
 import AddNews from './pages/AddNews'
@@ -35,7 +38,9 @@ function App() {
         <Route path='login/admin' element={<LoginAdmin />} />
         <Route path='register' element={<Register />} />
         <Route path='forgotpass/user' element={<ForgotPass />} />
-        <Route path='forgotpass/admin' element={<ForgotPass />} />
+        <Route path='forgotpass/admin' element={<AdminForgotPass />} />
+        <Route path='forgotpass/user/reset' element={<ResetPass />} />
+        <Route path='forgotpass/admin/reset' element={<ResetPassAdmin />} />
         <Route path='login/token' element={<LoginToken />} />
 
         <Route path='/' element={<SharedLayout />} >

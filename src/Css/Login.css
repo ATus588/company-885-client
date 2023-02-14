@@ -31,6 +31,7 @@
 .login-form-container div {
     background-color: var(--darkest);
     height: 50px;
+    min-height: fit-content;
     width: 47%;
     display: flex;
     font-size: 15px;
@@ -110,7 +111,6 @@
 .login-form-container-middle {
     display: flex;
     width: 700px;
-    height: 23vw;
     min-height: fit-content;
     flex-direction: column;
     justify-content: space-around;

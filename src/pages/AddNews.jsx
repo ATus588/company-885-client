@@ -3,6 +3,8 @@ import { gql, useMutation } from '@apollo/client'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../context/auth'
 import { useForm } from '../utils/hooks'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleLeft } from '@fortawesome/free-solid-svg-icons'
 
 const ADD_NEWS = gql`
 mutation MyMutation( $created_by: Int!, $title: String!, $content: String!) {
@@ -53,6 +55,7 @@ function AddNews() {
                     <button type='submit' className='login-button'>Submit</button>
                 </form>
                 {loading && <span className='login-loader'></span>}
+                <FontAwesomeIcon className='add-btn' icon={faCircleLeft} onClick={() => navigate(-1)} />
             </div>
         </>
     )

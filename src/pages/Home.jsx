@@ -25,7 +25,7 @@ function Home() {
                     <h2>Loading...</h2>
                 ) : (
                     data.news && data.news.map(singleNews => (
-                        <NewsCard singleNews={singleNews} key={singleNews.id} />
+                        <NewsCard singleNews={singleNews} key={singleNews.id} type='home' />
                     ))
                 )
             }

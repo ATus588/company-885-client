@@ -72,6 +72,9 @@ function LoginAdmin() {
                 </form>
                 {loading && <span className='login-loader'></span>}
                 {errors.error_code && <div className='login-error'>{errors.error_code}<br />{errors.error_message}</div>}
+                <section className='login-under-section'>Forget your password <br />
+                    <Link to='../forgotpass/admin'>Request reset token here</Link>
+                </section>
                 <section className='login-under-section'>Want to login as an user? <br />
                     <Link to='../login/user'>Go to user login page here</Link>
                 </section>
