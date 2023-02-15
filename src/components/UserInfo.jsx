@@ -37,7 +37,7 @@ function UserInfo() {
         <div className='menu-container' ref={menuRef}>
             <div className='user-info' onClick={() => { setOpen(!open) }}>
                 <img src={user.avatar_url ? user.avatar_url : defaultAvatar} alt="user avatar" className='user-avatar' />
-                <span>{user.name}</span>
+                <span className='hidden-small'>{user.name}</span>
             </div>
             {
                 open && <div className='user-info-menu'>

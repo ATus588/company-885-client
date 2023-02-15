@@ -26,7 +26,7 @@ function Menu() {
     return (
         <div className='menu-container' ref={menuRef}>
             <div className="menu-trigger" onClick={() => { setOpen(!open) }}>
-                <FontAwesomeIcon className='menu-icon' icon={faBars} /><span>Menu</span>
+                <FontAwesomeIcon className='menu-icon' icon={faBars} /><span className='hidden-small'>Menu</span>
             </div>
             {
                 open && <div className='dropdown-menu'>

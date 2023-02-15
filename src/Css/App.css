@@ -143,7 +143,11 @@ a {
     max-height: 30px;
     padding: 0 5px;;
 }
-
+@media (max-width: 800px) {
+    .hidden-small {
+        display: none;
+    }
+}
 /* login btn */
 .login-header {
     position: absolute;
@@ -203,4 +207,35 @@ a {
   0%   { opacity: 0;}
   50% { opacity: 0.5;}
   100% {opacity: 1;}
+}
+/*button*/
+.button-holder {
+    display: flex;
+    width: 90%;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+.util-button-delete {
+    border: solid 0px black;
+    border-radius: 3px;
+    padding: 5px;
+    color:white;
+    background-color: red;
+}
+.util-button-delete:hover {
+    padding: 5px;
+    color:white;
+    background-color: rgb(251, 37, 118);
+}
+.util-button-authorize {
+    border: solid 0px black;
+    border-radius: 3px;
+    padding: 5px;
+    color: black;
+    background-color: yellow;
+}
+.util-button-authorize:hover {
+    padding: 5px;
+    color: black;
+    background-color: yellowgreen;
 }

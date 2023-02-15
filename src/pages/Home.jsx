@@ -19,7 +19,7 @@ function Home() {
 
 
     return (
-        <div className='page-container'>
+        <div className='page-middle'>
             {
                 loading ? (
                     <h2>Loading...</h2>

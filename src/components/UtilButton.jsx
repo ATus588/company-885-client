@@ -27,34 +27,31 @@ const PASS_USERS = gql`mutation MyMutation($id: Int!) {
 }
 `
 
-function UtilButton({ id, func, type, text }) {
+function UtilButton({ id, func, name, text }) {
 
-  const navigate = useNavigate(0);
-  const MUTATION = getMutation(func);
+  const navigate = useNavigate();
+  let MUTATION;
+  if (func === 'pass-user') {
+    MUTATION = PASS_USERS
+  }
+  if (func === 'delete-user') {
+    MUTATION = DELETE_USERS
+  }
 
-  const [resetPass, { data, loading }] = useMutation(MUTATION, {
+  const [onclick, { data, loading }] = useMutation(MUTATION, {
     update(_, result) {
-      navigate(0);
+      navigate(0)
     },
     variables: { id: id }
   })
 
+  function OnClick() {
+    onclick();
+  }
+
   return (
-    <button className={`util-button-${type}`}>{text}</button>
+    <button className={`util-button-${name}`} onClick={OnClick} > {text}</button >
   )
 }
 
 export default UtilButton
-
-const getMutation = (func) => {
-  switch (func) {
-    case 'delete-admin':
-      return DELETE_ADMIN;
-    case 'delete-news':
-      return DELETE_NEWS;
-    case 'pass-user':
-      return PASS_USERS;
-    case 'delete-user':
-      return DELETE_USERS;
-  }
-}

@@ -37,7 +37,7 @@ function Users() {
     const { user } = useContext(AuthContext)
 
     return (
-        <div className='page-container'>
+        <div className='page-middle'>
             {user.role === 'admin' ?
                 (
                     <div className='user-inactive-container'>
@@ -53,8 +53,8 @@ function Users() {
                         }
                     </div>
                 ) : (<></>)}
-            <div className="user-active-container">
-                {user.role === 'admin' ? (<h3 style={{ color: 'aqua' }}>Authorized users</h3>) : (<></>)}
+            {user.role === 'admin' ? (<h3 style={{ color: 'aqua' }}>Authorized users</h3>) : (<></>)}
+            <div className="user-inactive-container">
                 {
                     loading ? (
                         <h2>Loading...</h2>

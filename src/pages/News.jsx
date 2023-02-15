@@ -43,29 +43,33 @@ query MyQuery {
 
 
 function News() {
-    const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
 
-    const { data, loading } = user.role === "admin" ? useQuery(GET_ALL_NEWS) : useQuery(GET_NEWS_FOR_USER)
-    return (
-        <div className='page-container'>
-            {
-                loading ? (
-                    <h2>Loading...</h2>
-                ) : (
-                    data.news && data.news.map(singleNews => (
-                        <NewsCard singleNews={singleNews} key={singleNews.id} />
-                    ))
-                )
-            }
-            {
-                user.role === "admin" ? (
-                    <Link to='add'>
-                        <FontAwesomeIcon className='add-btn' icon={faCirclePlus} />
-                    </Link>
-                ) : (<></>)
-            }
-        </div>
-    )
+  const { data, loading } = user.role === "admin" ? useQuery(GET_ALL_NEWS) : useQuery(GET_NEWS_FOR_USER)
+  return (
+    <>
+      <div className='page-container'>
+        {
+          loading ? (
+            <h2>Loading...</h2>
+          ) : (
+            data.news && data.news.map(singleNews => (
+              <NewsCard singleNews={singleNews} key={singleNews.id} />
+            ))
+          )
+        }
+      </div>
+      <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+        {
+          user.role === "admin" ? (
+            <Link to='add'>
+              <FontAwesomeIcon className='add-btn' icon={faCirclePlus} />
+            </Link>
+          ) : (<></>)
+        }
+      </div>
+    </>
+  )
 }
 
 export default News

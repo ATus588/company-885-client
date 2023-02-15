@@ -1,7 +1,6 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import defaultavatar from '../images/defaultavatar.jpg'
+import UtilButton from './UtilButton'
 
 
 function UserCard({ singleAd, inactive }) {
@@ -11,7 +10,10 @@ function UserCard({ singleAd, inactive }) {
             <div className='profile-id'>ID: <span>{singleAd.id}</span></div>
             <div className='profile-name'>Name: <span>{`${singleAd.firstname} ${singleAd.lastname}`}</span></div>
             <div className="profile-email">Email: <span>{singleAd.email}</span></div>
-            {inactive && <button>Authorize</button>}
+            <div className="button-holder">
+                {inactive && <UtilButton id={singleAd.id} func='pass-user' text='Authorize' name='authorize' />}
+                <UtilButton id={singleAd.id} func='delete-user' text='Delete' name='delete' />
+            </div>
         </div>
     )
 }

@@ -19,18 +19,22 @@ function Admins() {
 
     const { data, loading } = useQuery(GET_ALL_ADMINS)
     return (
-        <div className='page-container'>
-            {
-                loading ? (
-                    <h2>Loading...</h2>
-                ) : (
-                    data.admin && data.admin.map(singleAd => (
-                        <AdminCard singleAd={singleAd} key={singleAd.id} />
-                    ))
-                )
-            }
-            <NewAdminForm />
-        </div>
+        <>
+            <div className='page-container'>
+                {
+                    loading ? (
+                        <h2>Loading...</h2>
+                    ) : (
+                        data.admin && data.admin.map(singleAd => (
+                            <AdminCard singleAd={singleAd} key={singleAd.id} />
+                        ))
+                    )
+                }
+            </div>
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                <NewAdminForm />
+            </div>
+        </>
     )
 }
 

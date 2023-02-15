@@ -1,5 +1,5 @@
 .profile-part {
-    width: 800px;
+    width: 650px;
     margin-top: 20px;
     background-color: white;
     padding: 20px;
@@ -64,4 +64,19 @@
 }
 .profile-form input:hover {
     background-color:rgb(251, 37, 118);
+}
+.page-middle {
+    width: 100%;
+    min-height: 75vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+.user-inactive-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
 }
