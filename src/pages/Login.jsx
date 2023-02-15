@@ -38,12 +38,12 @@ function Login() {
 
     const [loginUser, { data, loading }] = useMutation(LOGIN_USER, {
         update(_, { data: { login_user: loginData } }) {
-            console.log(loginData)
+            
             if (loginData.status_code != 200) {
                 setErrors(loginData)
             } else {
                 context.login(loginData);
-                navigate('/');
+                navigate('/'); // navigate(-1) navigate(0)
             }
         },
         variables: values

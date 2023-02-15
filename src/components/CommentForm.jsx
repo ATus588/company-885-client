@@ -5,14 +5,17 @@ import { AuthContext } from '../context/auth'
 import { useForm } from '../utils/hooks'
 
 const ADD_COMMENT = gql`
-mutation MyMutation($created_by_admin: Int, $created_by_user: Int, $content: String, $point: Int!, $news_id: Int!) {
-  insert_news_comment_one(object: {created_by_admin: $created_by_admin, created_by_user: $created_by_user, content: $content, point: $point, news_id: $news_id}) {
-    id
+mutation MyMutation3($content: String!, $created_by_admin: Int, $created_by_user: Int, $news_id: Int!, $point: Int) {
+  validate_comment(content: $content, news_id: $news_id, created_by_admin: $created_by_admin, created_by_user: $created_by_user, point: $point) {
+    error_code
+    error_message
+    status_code
   }
 }
 `
 
 function CommentForm({ id }) {
+    const [errors, setErrors] = useState({});
     const { user } = useContext(AuthContext)
     const navigate = useNavigate();
     const initValue = {
@@ -27,8 +30,11 @@ function CommentForm({ id }) {
 
     const [addComment, { data, loading }] = useMutation(ADD_COMMENT, {
         update(_, result) {
-            console.log(result)
-            navigate(0)
+            if (result.data.validate_comment.status_code != 200) {
+                setErrors(result.data.validate_comment)
+            } else {
+                navigate(0); // navigate(-1) navigate(0)
+            }
         },
         variables: values
     })
@@ -50,6 +56,7 @@ function CommentForm({ id }) {
                 </div>
                 <button type='submit' className='comment-button'>Comment</button>
             </form>
+            {errors.error_code && <div className='login-error'>{errors.error_code}<br />{errors.error_message}</div>}
         </>
     )
 }

@@ -1,15 +1,28 @@
 import React, { useContext } from 'react'
 import { useQuery, gql } from '@apollo/client'
-import AdminCard from '../components/AdminCard'
+import UserCard from '../components/UserCard'
+import { AuthContext } from '../context/auth'
 
-
-const GET_ALL_USERS = gql`
+const GET_INACTIVE_USERS = gql`
 query MyQuery {
-  users(order_by: {created_by: asc}) {
+  user(order_by: {created_at: asc}, where: {status: {_eq: 0}}) {
+    email
+    id
+    firstname
+    lastname
+    status
+  }
+}
+`
+
+const GET_ACTIVE_USERS = gql`
+query MyQuery {
+  user(order_by: {created_at: asc}, where: {status: {_neq: 0}}) {
     avatar_url
     email
     id
-    name
+    firstname
+    lastname
     status
   }
 }
@@ -17,18 +30,41 @@ query MyQuery {
 
 function Users() {
 
-    const { data, loading } = useQuery(GET_ALL_USERS)
+    const { data: dataActive, loading: loading } = useQuery(GET_ACTIVE_USERS)
+
+    const { data: dataInactive, loading: loading2 } = useQuery(GET_INACTIVE_USERS)
+
+    const { user } = useContext(AuthContext)
+
     return (
         <div className='page-container'>
-            {
-                loading ? (
-                    <h2>Loading...</h2>
-                ) : (
-                    data.admin && data.admin.map(singleAd => (
-                        <AdminCard singleAd={singleAd} key={singleAd.id} />
-                    ))
-                )
-            }
+            {user.role === 'admin' ?
+                (
+                    <div className='user-inactive-container'>
+                        <h3 style={{ color: 'aqua' }}>Unauthorized users</h3>
+                        {
+                            loading2 ? (
+                                <h2>Loading...</h2>
+                            ) : (
+                                dataInactive.user && dataInactive.user.map(singleAd => (
+                                    <UserCard singleAd={singleAd} key={singleAd.id} inactive={true} />
+                                ))
+                            )
+                        }
+                    </div>
+                ) : (<></>)}
+            <div className="user-active-container">
+                {user.role === 'admin' ? (<h3 style={{ color: 'aqua' }}>Authorized users</h3>) : (<></>)}
+                {
+                    loading ? (
+                        <h2>Loading...</h2>
+                    ) : (
+                        dataActive.user && dataActive.user.map(singleAd => (
+                            <UserCard singleAd={singleAd} key={singleAd.id} />
+                        ))
+                    )
+                }
+            </div>
         </div>
     )
 }

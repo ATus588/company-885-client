@@ -5,7 +5,7 @@ import NewAdminForm from '../components/NewAdminForm'
 
 const GET_ALL_ADMINS = gql`
 query MyQuery {
-  admin(order_by: {created_by: asc}) {
+  admin(order_by: {created_at: asc}) {
     avatar_url
     email
     id
